@@ -1,0 +1,82 @@
+<%= stylesheet_link_tag "reg" %>
+<h1>Welcome!</h1>
+<div class="flash_wrap">
+  <ul>
+  <% if flash[:errors] %>
+    <% flash[:errors].each do |err| %>
+      <li class="flash_err"><%= err %></li>
+    <% end %>
+  <% end %>
+  </ul>
+  <% if flash[:notice] %>
+    <p class="flash_err" id="notice"><%= flash[:notice] %></p>
+  <% end %>
+</div>
+<div class="form_wrap">
+  <fieldset><legend class="form_head">Lender</legend>
+    <form action='/online_lending/lender' method='post'>
+      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+      <p>
+        <label for="email">Email</label>
+        <input id="email" type="email" name="lender[email]" placeholder="Enter email">
+      </p>
+      <p>
+        <label for="name">First Name</label>
+        <input id="name" type="text" name="lender[fname]" placeholder="Enter first name">
+      </p>
+      <p>
+        <label for="name">Last Name</label>
+        <input id="name" type="text" name="lender[lname]" placeholder="Enter last name">
+      </p>
+      <p>
+        <label for="password">Password</label>
+        <input id="password" type="password" name="lender[password]" placeholder="Enter password">
+      </p>
+      <p>
+        <label for="password_confirmation">Password Confirmation</label>
+        <input id="password_confirmation" type="password" name="lender[password_confirmation]" placeholder="Enter password">
+      </p>
+      <p><label for="money">Money <input type="number" name="lender[money]" placeholder="100"></label></p>
+      <button type="submit" class="btn_1">Register</button>
+    </form>
+    <a href="/online_lending/login">Already a member?</a>
+  </fieldset>
+
+  <fieldset><legend class="form_head">Borrower</legend>
+    <form action='/online_lending/borrower' method='post'>
+      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+      <p>
+        <label for="email">Email</label>
+        <input id="email" type="email" name="borrower[email]" placeholder="Enter email">
+      </p>
+      <p>
+        <label for="name">First Name</label>
+        <input id="name" type="text" name="borrower[f_name]" placeholder="Enter first name">
+      </p>
+      <p>
+        <label for="name">Last Name</label>
+        <input id="name" type="text" name="borrower[l_name]" placeholder="Enter last name">
+      </p>
+      <p>
+        <label for="password">Password</label>
+        <input id="password" type="password" name="borrower[password]" placeholder="Enter password">
+      </p>
+      <p>
+        <label for="password_confirmation">Password Confirmation</label>
+        <input id="password_confirmation" type="password" name="borrower[password_confirmation]" placeholder="Enter password">
+      </p>
+      <p>
+        <label for="purpose">Need Money for <input type="text" name="borrower[purpose]" placeholder="Computer Shop Business"></label>
+      </p>
+      <p>
+        <label for="description">Description <input type="text" name="borrower[description]"></label>
+      </p>
+      <p>
+        <label for="funds">Amount Needed <input type="number" name="borrower[funds]" placeholder="100"></label>
+      </p>
+      <button type="submit" class="btn_1">Register</button>
+    </form>
+    <a href="/online_lending/login">Already a member?</a>
+  </fieldset>
+
+</div>

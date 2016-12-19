@@ -1,0 +1,33 @@
+
+<h1><%= @lender.fname %> <%= @lender.lname %></h1>
+<p>Account Balance: <%= number_to_currency(@lender.money) %></p>
+<div class="">
+  <h3>List of people in need of help:</h3>
+  <table>
+    <thead>
+      <th>Name</th>
+      <th>Need Money for</th>
+      <th>Reason for loan</th>
+      <th>Amount needed </th>
+      <th>Amount raised</th>
+      <th>Action</th>
+    </thead>
+    <tbody>
+      <% @borrowers.each do |b| %>
+      <tr>
+        <td><%= b.f_name %> <%= b.l_name %></td>
+        <td><%= b.purpose %></td>
+        <td><%= b.description %></td>
+        <td><%= number_to_currency(b.funds) %></td>
+        <td>
+          <form action="/lend/<%= b.id %>" method="post">
+            <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+            <input type="number" name="funds" placeholder="25">
+            <input type="submit" name="submit" value="Lend">
+          </form>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

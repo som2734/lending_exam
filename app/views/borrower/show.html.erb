@@ -1,0 +1,25 @@
+
+<h1><%= @borrower.f_name %> <%= @borrower.l_name %></h1>
+<p>Amount Needed: <%= number_to_currency(@borrower.funds) %></p>
+<p>Amount Raised: <%= number_to_currency(@lenders.sum(:amount)) %></p>
+
+<div class="">
+  <h3>List of people who lend you money: </h3>
+  <table>
+    <thead>
+      <th>Name</th>
+      <th>email</th>
+      <th>Amount Lent</th>
+    </thead>
+    <tbody>
+      <% @lenders.each do |l| %>
+      <tr>
+        <td><%= l.fname %> <%= l.lname %></td>
+        <td><%= l.email %></td>
+        <td><%= number_to_currency(l.amount) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>
